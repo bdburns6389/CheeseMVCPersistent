@@ -20,8 +20,7 @@ namespace CheeseMVC.ViewModels
         [Required]
         [Display(Name = "Category")]
         public int CategoryID { get; set; }
-
-        public List<SelectListItem> Categories { get; set;}
+        public List<SelectListItem> Categories { get; set; }
 
         public AddCheeseViewModel()
         {
@@ -39,7 +38,7 @@ namespace CheeseMVC.ViewModels
             Categories = new List<SelectListItem>();
 
             // <option value="0">Hard</option>i
-            foreach (var i in categories)
+            foreach (CheeseCategory i in categories)
             {
                 Categories.Add(new SelectListItem
                 {
