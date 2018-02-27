@@ -1,0 +1,17 @@
+﻿@model CheeseMVC.ViewModels.AddMenuViewModel
+
+@{ ViewBag.Title = "New Menu";
+ }
+
+<h1>Add Menu</h1>
+<form asp-controller="Menu" asp-action="Add" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <input type="submit" value="Add Category" />
+</form>
+
+<!--No ViewModel exists yet, also, not sure if "Name" is correct-->

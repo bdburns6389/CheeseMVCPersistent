@@ -23,5 +23,31 @@ namespace CheeseMVC.Controllers
             List<Menu> menus = context.Menus.ToList();
             return View(menus);
         }
+
+        public IActionResult Add()
+        {//Won't work yet due to no menuviewmodel.
+            AddMenuViewModel addMenuViewModel = new AddMenuViewModel();
+            return View(addMenuViewModel);
+        }
+        
+        [HttpPost]
+        public IActionResult Add(AddMenuViewModel addMenuViewModel)
+        {
+             if (ModelState.IsValid)
+             {
+                // Add the new cheese to my existing cheeses
+                Menu newMenu = new Menu 
+                {
+                    Name = addMenuViewModel.Name,
+                };
+
+                context.Menus.Add(newMenu);
+                context.SaveChanges();
+
+                return Redirect("/Menu/ViewMenu/" + newMenu.ID);
+             }
+
+            return View(addMenuViewModel);
+        }
     }
 }
