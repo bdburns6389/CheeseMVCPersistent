@@ -20,8 +20,8 @@ namespace CheeseMVC.Controllers
 
         public IActionResult Index()
         {//Might be wrong context.  Might need to be context.Menus.
-            List<CheeseMenu> categories = context.CheeseMenus.ToList();
-            return View(categories);
+            List<Menu> menus = context.Menus.ToList();
+            return View(menus);
         }
     }
 }
