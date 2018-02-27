@@ -1,6 +1,8 @@
 ﻿using CheeseMVC.Data;
 using CheeseMVC.Models;
+using CheeseMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +50,22 @@ namespace CheeseMVC.Controllers
              }
 
             return View(addMenuViewModel);
+        }
+
+        public IActionResult ViewMenu(int id)
+        {
+            List<CheeseMenu> items = context
+                .CheeseMenus.Include(item => item.Cheese).Where(cm => cm.MenuID == id).ToList();
+
+            Menu menu = context.Menus.Single(m => m.ID == id);
+
+            ViewMenuViewModel viewModel = new ViewMenuViewModel
+            {
+                Menu = menu,
+                Items = items
+            };
+
+            return View(viewModel);
         }
     }
 }
