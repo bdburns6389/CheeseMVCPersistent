@@ -55,7 +55,10 @@ namespace CheeseMVC.Controllers
         public IActionResult ViewMenu(int id)
         {
             List<CheeseMenu> items = context
-                .CheeseMenus.Include(item => item.Cheese).Where(cm => cm.MenuID == id).ToList();
+                .CheeseMenus
+                .Include(item => item.Cheese)
+                .Where(cm => cm.MenuID == id)
+                .ToList();
 
             Menu menu = context.Menus.Single(m => m.ID == id); //TODO receiving contains no elements error.
 
@@ -81,8 +84,8 @@ namespace CheeseMVC.Controllers
             if (ModelState.IsValid)
             {
                 var cheeseID = addMenuItemViewModel.CheeseID;
-                var menuID = addMenuItemViewModel.MenuId;
-
+                var menuID = addMenuItemViewModel.MenuID;
+                
                 IList<CheeseMenu> existingItems = context.CheeseMenus
                     .Where(cm => cm.CheeseID == cheeseID)
                     .Where(cm => cm.MenuID == menuID).ToList();
@@ -97,8 +100,8 @@ namespace CheeseMVC.Controllers
 
                     context.CheeseMenus.Add(menuItem);
                     context.SaveChanges();
-
-                    return Redirect(string.Format("/Menu/ViewMenu/{0}", addMenuItemViewModel)); //TODO not sure where to redirect.
+                    //TODO  Adding cheese to both menus for some reason.
+                    return Redirect(string.Format("/Menu/ViewMenu/{0}", addMenuItemViewModel.MenuID)); //TODO not sure where to redirect.
                 }
             }
             return View(addMenuItemViewModel);

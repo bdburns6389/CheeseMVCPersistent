@@ -12,7 +12,7 @@ namespace CheeseMVC.ViewModels
         public Menu Menu { get; set; }
         public List<SelectListItem> Cheeses { get; set; }
 
-        public int MenuId { get; set; }
+        public int MenuID { get; set; }
         public int CheeseID { get; set; }
 
 
