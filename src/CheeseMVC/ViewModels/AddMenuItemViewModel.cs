@@ -9,11 +9,12 @@ namespace CheeseMVC.ViewModels
 {
     public class AddMenuItemViewModel
     {
+        public Menu Menu { get; set; }
+        public List<SelectListItem> Cheeses { get; set; }
+
         public int MenuId { get; set; }
         public int CheeseID { get; set; }
 
-        public Menu Menu { get; set; }
-        public List<SelectListItem> Cheeses { get; set; }
 
         public AddMenuItemViewModel() { }
 
@@ -29,6 +30,7 @@ namespace CheeseMVC.ViewModels
                     Text = cheese.Name
                 });
             }
+            Menu = menu;
         }
     }
 }

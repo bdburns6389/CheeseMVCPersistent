@@ -57,7 +57,7 @@ namespace CheeseMVC.Controllers
             List<CheeseMenu> items = context
                 .CheeseMenus.Include(item => item.Cheese).Where(cm => cm.MenuID == id).ToList();
 
-            Menu menu = context.Menus.Single(m => m.ID == id);
+            Menu menu = context.Menus.Single(m => m.ID == id); //TODO receiving contains no elements error.
 
             ViewMenuViewModel viewModel = new ViewMenuViewModel
             {
