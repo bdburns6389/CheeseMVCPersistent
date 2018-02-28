@@ -101,7 +101,7 @@ namespace CheeseMVC.Controllers
                     context.CheeseMenus.Add(menuItem);
                     context.SaveChanges();
                     //TODO  Adding cheese to both menus for some reason.
-                    return Redirect(string.Format("/Menu/ViewMenu/{0}", addMenuItemViewModel.MenuID)); //TODO not sure where to redirect.
+                    return Redirect(string.Format("/Menu/ViewMenu/{0}", addMenuItemViewModel.CheeseID)); //TODO not sure where to redirect.
                 }
             }
             return View(addMenuItemViewModel);
