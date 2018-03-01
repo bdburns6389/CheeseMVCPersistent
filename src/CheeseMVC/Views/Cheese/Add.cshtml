@@ -18,6 +18,7 @@
     <div class="form-group">
         <label asp-for="CategoryID"></label>
         <select asp-for="CategoryID" asp-items="Model.Categories"></select>
+        <span asp-validation-for="Categories"></span> 
         <!-- //Needs to refer to CategoryID, not Categories, or will not be a drop down, just a list that doesnt link to anything -->
     </div>
 
