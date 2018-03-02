@@ -35,13 +35,14 @@ namespace CheeseMVC.Controllers
         [HttpPost]
         public IActionResult Add(AddCheeseViewModel addCheeseViewModel)
         {
+
             if (ModelState.IsValid)
             {
                 // Add the new cheese to my existing cheeses
-                CheeseCategory newCheeseCategory = 
+                CheeseCategory newCheeseCategory =
                     context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
                 Cheese newCheese = new Cheese
-                
+
                 {
                     Name = addCheeseViewModel.Name,
                     Description = addCheeseViewModel.Description,
@@ -53,7 +54,12 @@ namespace CheeseMVC.Controllers
 
                 return Redirect("/Cheese");
             }
-            return View(addCheeseViewModel);
+            else
+            {
+                AddCheeseViewModel populateFields = new AddCheeseViewModel(context.Categories.ToList());
+                //This is needed in case the ModelState is not valid, it will keep the categories drop down populated.
+                return View(populateFields);
+            }
         }
 
         public IActionResult Remove()
